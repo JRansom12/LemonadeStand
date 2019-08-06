@@ -12,19 +12,15 @@ namespace LemonadeStand
         public Stand lemonadeStand;
         public string name;
         public double money;
-        public int cupCounter;
-        public int lemonCounter;
-        public int sugarCounter;
-        public int iceCounter;
+        //public int cupCounter;
+        //public int lemonCounter;
+        //public int sugarCounter;
+        //public int iceCounter;
 
 
         // constructor
         public Player()
         {
-            cupCounter = 0;
-            lemonCounter = 0;
-            sugarCounter = 0;
-            iceCounter = 0;
             money = 20;
         }
 

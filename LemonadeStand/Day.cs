@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         // member variables
         public Weather weather;
-        public List<string> customers;
+        public List<Customer> customers;
 
         // constructor
         public Day()
@@ -22,6 +22,11 @@ namespace LemonadeStand
         public string GetWeather()
         {
             return weather.GetWeather();
+        }
+        public int GenerateNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
         }
     }
 }

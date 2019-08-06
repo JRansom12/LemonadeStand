@@ -9,22 +9,24 @@ namespace LemonadeStand
     public class Store
     {
         // member variables
-        public List<string> standInventory;
+        public List<string> inventory;
         public int cupPrice;
         public int lemonPrice;
         public int sugarPrice;
         public int icePrice;
-        public int moneySpent;
+        // make a list for each item price lemonPrice[0] = $.80 for 10
         public int cupsPurchased;
         public int lemonsPurchased;
         public int sugarPurchased;
         public int icePurchased;
-        public Player player;
+        public Player player1;
+        public Stand lemonadeStand;
 
         // constructor
         public Store()
         {
-            player = new Player();
+            player1 = new Player();
+            lemonadeStand = new Stand();
         }
 
 
@@ -35,119 +37,122 @@ namespace LemonadeStand
             cupsPurchased = Convert.ToInt32(Console.ReadLine());
             if (cupsPurchased == 25)
             {
-                player.cupCounter += 25;
-                money -= .90;
-                return money;
-                return player.cupCounter;
+                lemonadeStand.cupCounter += 25;
+                player1.money -= .90;
+                return player1.money;
+                //return lemonadeStand.cupCounter;
             }
             else if (cupsPurchased == 50)
             {
-                money -= 1.60;
-                player.cupCounter += 50;
-                return money;
-                return player.cupCounter;
+                player1.money -= 1.60;
+                lemonadeStand.cupCounter += 50;
+                return player1.money;
+                //return lemonadeStand.cupCounter;
             }
             else if (cupsPurchased == 100)
             {
-                money -= 2.80;
-                player.cupCounter += 100;
-                return money;
-                return player.cupCounter;
+                player1.money -= 2.80;
+                lemonadeStand.cupCounter += 100;
+                return player1.money;
+                //return lemonadeStand.cupCounter;
             }
             else
             {
-                return money;
-                return player.cupCounter;
+                return player1.money;
+                //return lemonadeStand.cupCounter;
             }
         }
         public double PurchaseLemons(double money)
         {
             Console.WriteLine("Purchase lemons\n10 lemons = $.80\n30 lemons = $2.10\n75 lemons = $4.50\nEnter 10, 30, 75, or 0");
+            lemonsPurchased = Convert.ToInt32(Console.ReadLine());
             if (lemonsPurchased == 10)
             {
-                player.lemonCounter += 10;
-                money -= .80;
-                return money;
-                return player.lemonCounter;
+                lemonadeStand.lemonCounter += 10;
+                player1.money -= .80;
+                return player1.money;
+                //return lemonadeStand.lemonCounter;
             }
             else if (lemonsPurchased == 30)
             {
-                money -= 2.10;
-                player.lemonCounter += 30;
-                return money;
-                return player.lemonCounter;
+                player1.money -= 2.10;
+                lemonadeStand.lemonCounter += 30;
+                return player1.money;
+                //return lemonadeStand.lemonCounter;
             }
             else if (lemonsPurchased == 75)
             {
-                money -= 4.50;
-                player.lemonCounter += 75;
-                return money;
-                return player.lemonCounter;
+                player1.money -= 4.50;
+                lemonadeStand.lemonCounter += 75;
+                return player1.money;
+                //return lemonadeStand.lemonCounter;
             }
             else
             {
-                return money;
-                return player.lemonCounter;
+                return player1.money;
+                //return lemonadeStand.lemonCounter;
             }
         }
         public double PurchaseSugar(double money)
         {
             Console.WriteLine("Purchase sugar\n8 cups of sugar = $.56\n20 cups of sugar = $1.50\n48 cups of sugar = $3.20\nEnter 8, 20, 48, or 0");
+            sugarPurchased = Convert.ToInt32(Console.ReadLine());
             if (sugarPurchased == 8)
             {
-                player.sugarCounter += 8;
-                money -= .56;
-                return money;
-                return player.sugarCounter;
+                lemonadeStand.sugarCounter += 8;
+                player1.money -= .56;
+                return player1.money;
+                //return lemonadeStand.sugarCounter;
             }
             else if (sugarPurchased == 20)
             {
-                money -= 1.50;
-                player.sugarCounter += 20;
-                return money;
-                return player.sugarCounter;
+                player1.money -= 1.50;
+                lemonadeStand.sugarCounter += 20;
+                return player1.money;
+                //return lemonadeStand.sugarCounter;
             }
             else if (lemonsPurchased == 48)
             {
-                money -= 3.20;
-                player.sugarCounter += 48;
-                return money;
-                return player.sugarCounter;
+                player1.money -= 3.20;
+                lemonadeStand.sugarCounter += 48;
+                return player1.money;
+                //return lemonadeStand.sugarCounter;
             }
             else
             {
-                return money;
-                return player.sugarCounter;
+                return player1.money;
+                //return lemonadeStand.sugarCounter;
             }
         }
         public double PurchaseIce(double money)
         {
             Console.WriteLine("Purchase ice\n100 ice cubes = $.95\n250 ice cubes = $2.25\n500 ice cubes = $3.95\nEnter 100, 250, 500, or 0");
+            icePurchased = Convert.ToInt32(Console.ReadLine());
             if (icePurchased == 100)
             {
-                player.iceCounter += 100;
-                money -= .95;
-                return money;
-                return player.iceCounter;
+                lemonadeStand.iceCounter += 100;
+                player1.money -= .95;
+                return player1.money;
+                //return lemonadeStand.iceCounter;
             }
             else if (lemonsPurchased == 250)
             {
-                money -= 2.25;
-                player.iceCounter += 250;
-                return money;
-                return player.iceCounter;
+                player1.money -= 2.25;
+                lemonadeStand.iceCounter += 250;
+                return player1.money;
+                //return lemonadeStand.iceCounter;
             }
             else if (lemonsPurchased == 500)
             {
-                money -= 3.95;
-                player.iceCounter += 500;
-                return money;
-                return player.iceCounter;
+                player1.money -= 3.95;
+                lemonadeStand.iceCounter += 500;
+                return player1.money;
+                //return lemonadeStand.iceCounter;
             }
             else
             {
-                return money;
-                return player.iceCounter;
+                return player1.money;
+                //return lemonadeStand.iceCounter;
             }
         }
     }

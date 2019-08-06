@@ -9,14 +9,14 @@ namespace LemonadeStand
     class Inventory
     {
         // member variables
-        public List<string> standInventory;
+        public List<string> inventory;
         public Inventory()
             {
-                standInventory = new List<string>();
-                standInventory.Add("cups");
-                standInventory.Add("lemons");
-                standInventory.Add("sugar");
-                standInventory.Add("ice");
+                inventory = new List<string>();
+                inventory.Add("cups");
+                inventory.Add("lemons");
+                inventory.Add("sugar");
+                inventory.Add("ice");
             }
     }
 }

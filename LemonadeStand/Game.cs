@@ -42,20 +42,27 @@ namespace LemonadeStand
         {
             Console.WriteLine("Lemonade Stand");
             DisplayRules();
+            Console.ReadLine();
+            Console.Clear();
             DisplayDay();
-            DisplayInventory();
+            PurchaseSupplies();
+        }
+
+        public void PurchaseSupplies()
+        {
+            lemonadeStand.DisplayInventory();
             DisplayMoney();
             theStore.PurchaseCups(player1.money);
-            DisplayInventory();
+            lemonadeStand.DisplayInventory();
             DisplayMoney();
             theStore.PurchaseLemons(player1.money);
-            DisplayInventory();
+            lemonadeStand.DisplayInventory();
             DisplayMoney();
             theStore.PurchaseSugar(player1.money);
-            DisplayInventory();
+            lemonadeStand.DisplayInventory();
             DisplayMoney();
             theStore.PurchaseIce(player1.money);
-            DisplayInventory();
+            lemonadeStand.DisplayInventory();
             DisplayMoney();
             Console.ReadLine();
         }
@@ -71,7 +78,7 @@ namespace LemonadeStand
 
         public void DisplayInventory()
         {
-            Console.WriteLine("Inventory\nCups: " + player1.cupCounter + "\nLemons: " + lemonadeStand.lemonCounter + "\nCups of Sugar: " + lemonadeStand.sugarCounter + "\nIce Cubes: " + lemonadeStand.iceCounter);
+            Console.WriteLine("Inventory\nCups: " + lemonadeStand.cupCounter + "\nLemons: " + lemonadeStand.lemonCounter + "\nCups of Sugar: " + lemonadeStand.sugarCounter + "\nIce Cubes: " + lemonadeStand.iceCounter);
         }
         public void DisplayMoney()
         {
