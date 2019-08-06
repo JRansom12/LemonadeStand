@@ -12,7 +12,7 @@ namespace LemonadeStand
         public Stand lemonadeStand;
         public string name;
         public double money;
-        public double cupCounter;
+        public int cupCounter;
         public int lemonCounter;
         public int sugarCounter;
         public int iceCounter;

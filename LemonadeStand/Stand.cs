@@ -17,6 +17,8 @@ namespace LemonadeStand
         public int lemonCounter;
         public int sugarCounter;
         public int iceCounter;
+        public int pitcher;
+        public int cup;
         // constructor
         public Stand()
         {
@@ -31,6 +33,10 @@ namespace LemonadeStand
         public void DisplayInventory()
         {
             Console.WriteLine("Cups: " + cupCounter + "Lemons: " + lemonCounter + "Cups of Sugar: " + sugarCounter + "Ice Cubes: " + iceCounter);
+        }
+        public void MakePitcher()
+        {
+
         }
     }
 }

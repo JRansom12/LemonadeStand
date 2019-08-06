@@ -26,8 +26,7 @@ namespace LemonadeStand
             customerList.Add("customer7");
             customerList.Add("customer8");
             customerList.Add("customer9");
-            customerList.Add("customer10");
-            
+            customerList.Add("customer10");           
         }
         
 
@@ -37,6 +36,17 @@ namespace LemonadeStand
         {
             Random random = new Random();
             return random.Next(min, max);
+        }
+        public void customerBuyLemonade()
+        {
+            if(GenerateNumber(50,100) < 90)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         // member variables
         public Weather weather;
+        public List<string> customers;
 
         // constructor
         public Day()
@@ -18,7 +19,7 @@ namespace LemonadeStand
         }
 
         // member methods
-        public string GetDayWeather()
+        public string GetWeather()
         {
             return weather.GetWeather();
         }
