@@ -18,6 +18,10 @@ namespace LemonadeStand
         public int lemonsPurchased;
         public int sugarPurchased;
         public int icePurchased;
+        public int sugarCounter;
+        public int lemonCounter;
+        public int cupCounter;
+        public int iceCounter;
         public Player player1;
         public Stand lemonadeStand;
 
@@ -27,41 +31,32 @@ namespace LemonadeStand
             player1 = new Player();
             lemonadeStand = new Stand();
         }
-
-
         // member methods
-        public double PurchaseCups()
+        public int PurchaseCups()
         {
             Console.WriteLine("Purchase cups\n25 cups = .90\n50 cups = 1.60\n100 cups = 2.80\nEnter 25, 50, 100, or 0");
             cupsPurchased = Convert.ToInt32(Console.ReadLine());
             if (cupsPurchased == 25)
             {
-                lemonadeStand.cupCounter += 25;
-                player1.money -= .90;
-                //return player1.money;
-                return lemonadeStand.cupCounter;
+                cupCounter += 25;
+                return cupCounter;
             }
             else if (cupsPurchased == 50)
             {
-                player1.money -= 1.60;
-                lemonadeStand.cupCounter += 50;
-                //return player1.money;
-                return lemonadeStand.cupCounter;
+                cupCounter += 50;
+                return cupCounter;
             }
             else if (cupsPurchased == 100)
             {
-                player1.money -= 2.80;
-                lemonadeStand.cupCounter += 100;
-                //return player1.money;
-                return lemonadeStand.cupCounter;
+                cupCounter += 100;
+                return cupCounter;
             }
             else
             {
-                //return player1.money;
-                return lemonadeStand.cupCounter;
+                return cupCounter;
             }
         }
-        public double PurchaseLemons()
+        public int PurchaseLemons()
         {
             Console.WriteLine("Purchase lemons\n10 lemons = $.80\n30 lemons = $2.10\n75 lemons = $4.50\nEnter 10, 30, 75, or 0");
             lemonsPurchased = Convert.ToInt32(Console.ReadLine());
@@ -92,16 +87,14 @@ namespace LemonadeStand
                 return lemonadeStand.lemonCounter;
             }
         }
-        public double PurchaseSugar()
+        public int GetSugar()
         {
             Console.WriteLine("Purchase sugar\n8 cups of sugar = $.56\n20 cups of sugar = $1.50\n48 cups of sugar = $3.20\nEnter 8, 20, 48, or 0");
             sugarPurchased = Convert.ToInt32(Console.ReadLine());
             if (sugarPurchased == 8)
             {
                 lemonadeStand.sugarCounter += 8;
-                player1.money -= .56;
                 return lemonadeStand.sugarCounter;
-                //return player1.money;
             }
             else if (sugarPurchased == 20)
             {
@@ -123,7 +116,7 @@ namespace LemonadeStand
                 return lemonadeStand.sugarCounter;
             }
         }
-        public double PurchaseIce()
+        public int PurchaseIce()
         {
             Console.WriteLine("Purchase ice\n100 ice cubes = $.95\n250 ice cubes = $2.25\n500 ice cubes = $3.95\nEnter 100, 250, 500, or 0");
             icePurchased = Convert.ToInt32(Console.ReadLine());
@@ -153,6 +146,18 @@ namespace LemonadeStand
                 //return player1.money;
                 return lemonadeStand.iceCounter;
             }
+        }
+        public void DisplayInventory()
+        {
+            Console.WriteLine("Cups: " + cupCounter + "\nLemons: " + lemonadeStand.lemonCounter + "\nCups of Sugar: " + lemonadeStand.sugarCounter + "\nIce Cubes: " + lemonadeStand.iceCounter);
+        }
+        public void PurchaseSupplies()
+        {
+            PurchaseCups();
+            PurchaseLemons();
+            GetSugar();
+            PurchaseIce();
+            DisplayInventory();
         }
     }
 }

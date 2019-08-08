@@ -22,19 +22,23 @@ namespace LemonadeStand
         public int iceCubesInCup;
         public int cupsPerPitcher;
         public double lemonadePrice;
+        public Player player1;
+        public Day today;
 
         // constructor
         public Stand()
         {
-            cupCounter = 0;
-            lemonCounter = 0;
-            sugarCounter = 0;
-            iceCounter = 0;
+            today = new Day();
+            cupCounter = 50;
+            lemonCounter = 30;
+            sugarCounter = 20;
+            iceCounter = 250;
             lemonsInPitcher = 4;
             sugarInPitcher = 4;
             iceCubesInCup = 4;
             cupsPerPitcher = 10;
             lemonadePrice = .25;
+            player1 = new Player();
         }
 
         // member methods
@@ -165,7 +169,15 @@ namespace LemonadeStand
         public void SellLemonade()
         {
             MakePitcher();
-
+            today.CustomersPurchase();
+            today.MoneyMade();
+        }
+        public void EndOfDaySupplies()
+        {
+            Console.WriteLine("Your remaining ice has melted.");
+            iceCounter = 0;
+            player1.money += today.moneyMade;
+            DisplayInventory();
         }
     }
 }
