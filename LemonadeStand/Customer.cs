@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Customer
+    public abstract class Customer
     {
         // member variables
         public string name;
@@ -37,10 +37,7 @@ namespace LemonadeStand
         }
 
         // member methods
-        public void PurchaseLemonade()
-        {
 
-        }
         public int GenerateNumber(int min, int max)
         {
             Random random = new Random();

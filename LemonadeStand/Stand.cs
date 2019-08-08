@@ -10,9 +10,6 @@ namespace LemonadeStand
     {
         // member variables
         public List<string> standInventory;
-        public int price;
-        public int expenses;
-        public int profit;
         public int cupCounter;
         public int lemonCounter;
         public int sugarCounter;
@@ -21,30 +18,30 @@ namespace LemonadeStand
         public int sugarInPitcher;
         public int iceCubesInCup;
         public int cupsPerPitcher;
+        public double wallet;
         public double lemonadePrice;
-        public Player player1;
-        public Day today;
+        public Store theStore;
 
         // constructor
         public Stand()
         {
-            today = new Day();
-            cupCounter = 50;
-            lemonCounter = 30;
-            sugarCounter = 20;
-            iceCounter = 250;
-            lemonsInPitcher = 4;
-            sugarInPitcher = 4;
-            iceCubesInCup = 4;
-            cupsPerPitcher = 10;
-            lemonadePrice = .25;
-            player1 = new Player();
+            lemonsInPitcher = 0;
+            sugarInPitcher = 0;
+            iceCubesInCup = 0;
+            cupsPerPitcher = 0;
+            lemonadePrice = 0;
+            wallet = 20;
+            theStore = new Store();
         }
 
         // member methods
         public void DisplayInventory()
         {
-            Console.WriteLine("Cups: " + cupCounter + "\nLemons: " + lemonCounter + "\nCups of Sugar: " + sugarCounter + "\nIce Cubes: " + iceCounter);
+            Console.WriteLine("Cups: " + theStore.cupCounter + "\nLemons: " + theStore.lemonCounter + "\nCups of Sugar: " + theStore.sugarCounter + "\nIce Cubes: " + theStore.iceCounter);
+        }
+        public void DisplayMoney()
+        {
+            Console.WriteLine("Money: " + wallet);
         }
         public void MakePitcherRecipe()
         {
@@ -86,17 +83,16 @@ namespace LemonadeStand
         public int ChooseIce()
         {
             Console.WriteLine("How many ice cubes per cup?");
-            iceCubesInCup = Convert.ToInt32(Console.ReadLine());
-            return iceCubesInCup;
-            //if (iceCubesInCup <= 10)
-            //{
-            //    return iceCubesInCup;
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Can't fit 10 or more ice cubes in a cup, sorry. Please choose a smaller number.");
-            //    ChooseIce();
-            //}
+            iceCubesInCup = int.Parse(Console.ReadLine());
+            if (iceCubesInCup <= 10)
+            {
+                return iceCubesInCup;
+            }
+            else
+            {
+                Console.WriteLine("Can't fit 10 or more ice cubes in a cup, sorry. Please choose a smaller number.");
+                return ChooseIce();
+            }
         }
         public int AddIce()
         {
@@ -156,8 +152,118 @@ namespace LemonadeStand
         }
         public int AddCups()
         {
-            cupCounter -= cupsPerPitcher;
-            return cupCounter;
+            theStore.cupCounter -= cupsPerPitcher;
+            return theStore.cupCounter;
+        }
+        public double PayForLemons()
+        {
+            if (theStore.lemonsPurchased == 10)
+            {
+                wallet -= .80;
+                return wallet;
+            }
+            else if (theStore.lemonsPurchased == 30)
+            {
+                wallet -= 2.10;
+                return wallet;
+            }
+            else if (theStore.lemonsPurchased == 75)
+            {
+                wallet -= 4.50;
+                return wallet;
+            }
+            else
+            {
+                return wallet;
+            }
+        }
+        public double PayForSugar()
+        {
+            if (theStore.sugarPurchased == 8)
+            {
+                wallet -= .56;
+                return wallet;
+            }
+            else if(theStore.sugarPurchased == 20)
+            {
+                wallet -= 1.50;
+                return wallet;
+            }
+            else if(theStore.sugarPurchased == 48)
+            {
+                wallet -= 3.20;
+                return wallet;
+            }
+            else
+            {
+                return wallet;
+            }
+            
+        }
+        public double PayForIce()
+        {
+            if (theStore.icePurchased == 100)
+            {
+                wallet -= .95;
+                return wallet;
+            }
+            else if(theStore.icePurchased == 250)
+            {
+                wallet -= 2.25;
+                return wallet;
+            }
+            else if(theStore.icePurchased == 500)
+            {
+                wallet -= 3.95;
+                return wallet;
+            }
+            else
+            {
+                return wallet;
+            }
+        }
+        public double PayForCups()
+        {
+            if (theStore.cupsPurchased == 25)
+            {
+                wallet -= .90;
+                return wallet;
+            }
+            else if(theStore.cupsPurchased == 50)
+            {
+                wallet -= 1.60;
+                return wallet;
+            }
+            else if(theStore.cupsPurchased == 100)
+            {
+                wallet -= 2.80;
+                return wallet;
+            }
+            else
+            {
+                return wallet;
+            }
+        }
+        public void PurchaseSupplies()
+        {
+            DisplayInventory();
+            DisplayMoney();
+            theStore.PurchaseCups();
+            PayForCups();
+            DisplayInventory();
+            DisplayMoney();
+            theStore.PurchaseLemons();
+            PayForLemons();
+            DisplayInventory();
+            DisplayMoney();
+            theStore.GetSugar();
+            PayForSugar();
+            DisplayInventory();
+            DisplayMoney();
+            theStore.PurchaseIce();
+            PayForIce();
+            DisplayInventory();
+            DisplayMoney();
         }
         public void MakePitcher()
         {
@@ -169,15 +275,14 @@ namespace LemonadeStand
         public void SellLemonade()
         {
             MakePitcher();
-            today.CustomersPurchase();
-            today.MoneyMade();
         }
         public void EndOfDaySupplies()
         {
             Console.WriteLine("Your remaining ice has melted.");
-            iceCounter = 0;
-            player1.money += today.moneyMade;
+            theStore.iceCounter = 0;
             DisplayInventory();
+            DisplayMoney();
+            Console.ReadLine();
         }
     }
 }

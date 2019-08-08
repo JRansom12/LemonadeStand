@@ -12,11 +12,7 @@ namespace LemonadeStand
         public List<string> inventory;
         public Inventory()
             {
-                inventory = new List<string>();
-                inventory.Add("cups");
-                inventory.Add("lemons");
-                inventory.Add("sugar");
-                inventory.Add("ice");
+                inventory = new List<string> { "cups", "lemons", "sugar", "ice" };
             }
     }
 }

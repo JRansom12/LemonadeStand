@@ -15,11 +15,6 @@ namespace LemonadeStand
         public int iceCounter;
         public int dayCounter;
         public int numberOfDays;
-        public int totalCups;
-        public double totalSales;
-        public double profitMargin;
-        public Player player1;
-        public List<int> days;
         public Day today;
         public Stand lemonadeStand;
         public Store theStore;
@@ -27,20 +22,11 @@ namespace LemonadeStand
         // constructor
         public Game()
         {
-            cupCounter = 0;
-            lemonCounter = 0;
-            sugarCounter = 0;
-            iceCounter = 0;
-            totalCups = 0;
-            profitMargin = 0;
-            totalSales = 0;
-            days = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
             dayCounter = 1;
-            today = new Day();
             numberOfDays = 7;
-            lemonadeStand = new Stand();
-            player1 = new Player();
+            today = new Day();
             theStore = new Store();
+            lemonadeStand = new Stand();
         }
 
         // member methods
@@ -53,41 +39,21 @@ namespace LemonadeStand
             for (int i = 1; i <= numberOfDays; i++)
             {
                 DisplayDay();
-                theStore.PurchaseSupplies();
+                lemonadeStand.PurchaseSupplies();
                 lemonadeStand.MakePitcherRecipe();
                 lemonadeStand.SetLemonadePrice();
                 Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
                 Console.ReadLine();
                 lemonadeStand.SellLemonade();
-                today.CustomersPurchase();
-                today.MoneyMade();
                 lemonadeStand.EndOfDaySupplies();
                 DisplayEndOfDay();
 
                 dayCounter++;
                 Console.Clear();
             }
-            DisplayEndOfDays();
             Console.ReadLine();
         }
 
-        //public void PurchaseSupplies()
-        //{
-        //    lemonadeStand.DisplayInventory();
-        //    DisplayMoney();
-        //    theStore.PurchaseCups();
-        //    lemonadeStand.DisplayInventory();
-        //    DisplayMoney();
-        //    theStore.PurchaseLemons();
-        //    lemonadeStand.DisplayInventory();
-        //    DisplayMoney();
-        //    theStore.PurchaseSugar();
-        //    lemonadeStand.DisplayInventory();
-        //    DisplayMoney();
-        //    theStore.PurchaseIce();
-        //    lemonadeStand.DisplayInventory();
-        //    DisplayMoney();
-        //}
         public void DisplayRules()
         {
             Console.WriteLine("Lemonade Stand\nSell lemonade for " + numberOfDays + " days.\nPurchase cups, lemons, sugar, and ice. Make your recipe.\nConsider the weather. Set your price. And try to make a profit!");
@@ -104,7 +70,7 @@ namespace LemonadeStand
         }
         public void DisplayMoney()
         {
-            Console.WriteLine("Money: " + player1.money);
+            Console.WriteLine("Money: " + lemonadeStand.wallet);
         }
 
         public void ClearLine()
@@ -117,12 +83,6 @@ namespace LemonadeStand
         {
             DisplayInventory();
             DisplayMoney();
-        }
-        public void DisplayEndOfDays()
-        {
-            Console.WriteLine(numberOfDays + " days have passed. You have sold " + totalCups + " total cups of lemonade for " + totalSales + " dollars. Your profit margin is " + profitMargin + ".");
-            Console.WriteLine("Here is your remaining inventory:");
-            DisplayInventory();
         }
     }
 }

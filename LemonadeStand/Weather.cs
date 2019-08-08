@@ -10,7 +10,6 @@ namespace LemonadeStand
     {
         // member variables
         public int temperature;
-        public int forecastTemp;
         public string forecast;
         public string weather;
         public List<string> forecastList;
@@ -36,12 +35,6 @@ namespace LemonadeStand
             temperature = GenerateNumber(50, 100);
             return temperature;
         }
-        //public int GetForecastTemp()
-        //{
-        //    GetTemp();
-        //    forecastTemp = GenerateNumber(temperature - 5, temperature + 5);
-        //    return forecastTemp;
-        //}
         public string GetWeather()
         {
             weather = GetTemp() + " degrees and " + GetForecast();
