@@ -44,18 +44,20 @@ namespace LemonadeStand
             Console.WriteLine("Press enter to begin");
             Console.ReadLine();
             Console.Clear();
-            //while
-            DisplayDay();
-            PurchaseSupplies();
-            lemonadeStand.MakePitcherRecipe();
-            lemonadeStand.SetLemonadePrice();
-            Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
-            Console.ReadLine();
-            lemonadeStand.SellLemonade();
-            DisplayEndOfDay();
+            for (int i = 1; i <= numberOfDays; i++)
+            {
+                DisplayDay();
+                PurchaseSupplies();
+                lemonadeStand.MakePitcherRecipe();
+                lemonadeStand.SetLemonadePrice();
+                Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
+                Console.ReadLine();
+                lemonadeStand.SellLemonade();
+                DisplayEndOfDay();
 
-            dayCounter++;
-            Console.Clear();
+                dayCounter++;
+                Console.Clear();
+            }
         }
 
         public void PurchaseSupplies()

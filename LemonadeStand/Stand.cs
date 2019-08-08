@@ -165,10 +165,7 @@ namespace LemonadeStand
         public void SellLemonade()
         {
             MakePitcher();
-            while (cupCounter > 0)
-            {
 
-            }
         }
     }
 }

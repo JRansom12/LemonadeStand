@@ -10,13 +10,14 @@ namespace LemonadeStand
     {
         // member variables
         public Weather weather;
-        public List<Customer> customers;
+        public List<Customer> customerList;
 
         // constructor
         public Day()
         {
             weather = new Weather();
         }
+
 
         // member methods
         public string GetWeather()
