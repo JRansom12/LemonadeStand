@@ -20,6 +20,9 @@ namespace LemonadeStand
         public int lemonsInPitcher;
         public int sugarInPitcher;
         public int iceCubesInCup;
+        public int cupsPerPitcher;
+        public double lemonadePrice;
+
         // constructor
         public Stand()
         {
@@ -27,9 +30,11 @@ namespace LemonadeStand
             lemonCounter = 0;
             sugarCounter = 0;
             iceCounter = 0;
-            lemonsInPitcher = 5;
-            sugarInPitcher = 5;
-            iceCubesInCup = 5;
+            lemonsInPitcher = 4;
+            sugarInPitcher = 4;
+            iceCubesInCup = 4;
+            cupsPerPitcher = 10;
+            lemonadePrice = .25;
         }
 
         // member methods
@@ -37,54 +42,133 @@ namespace LemonadeStand
         {
             Console.WriteLine("Cups: " + cupCounter + "\nLemons: " + lemonCounter + "\nCups of Sugar: " + sugarCounter + "\nIce Cubes: " + iceCounter);
         }
-        public void MakePitcher()
+        public void MakePitcherRecipe()
         {
             ChooseLemons();
             ChooseSugar();
             ChooseIce();
+            ChooseCups();
+            Console.WriteLine("Lemons in pitcher: " + lemonsInPitcher + "\nSugar in pitcher: " + sugarInPitcher + "\nIce cubes per cup: " + iceCubesInCup + "\nCups per pitcher: " + cupsPerPitcher);
         }
-        public void ChooseLemons()
+        public double SetLemonadePrice()
+        {
+            Console.WriteLine("What price (between .01 and .99) do you want to sell your lemonade for?");
+            lemonadePrice = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Price per cup of lemonade is " + lemonadePrice);
+            return lemonadePrice;
+        }
+        public int ChooseLemons()
         {
             Console.WriteLine("Make your lemonade recipe!\nHow many lemons?");
             lemonsInPitcher = Convert.ToInt32(Console.ReadLine());
-            lemonCounter -= lemonsInPitcher;
+            return lemonsInPitcher;
         }
-        public void ChooseSugar()
+        public int AddLemons()
+        {
+            lemonCounter -= lemonsInPitcher;
+            return lemonCounter;
+        }
+        public int ChooseSugar()
         {
             Console.WriteLine("How many cups of sugar?");
             sugarInPitcher = Convert.ToInt32(Console.ReadLine());
+            return sugarInPitcher;
+        }
+        public int AddSugar()
+        {
             sugarCounter -= sugarInPitcher;
+            return sugarCounter;
         }
         public int ChooseIce()
         {
             Console.WriteLine("How many ice cubes per cup?");
             iceCubesInCup = Convert.ToInt32(Console.ReadLine());
+            return iceCubesInCup;
+            //if (iceCubesInCup <= 10)
+            //{
+            //    return iceCubesInCup;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Can't fit 10 or more ice cubes in a cup, sorry. Please choose a smaller number.");
+            //    ChooseIce();
+            //}
+        }
+        public int AddIce()
+        {
             if (iceCubesInCup < 2)
             {
                 iceCounter -= 8 * iceCubesInCup;
+                return iceCounter;
             }
             else if (iceCubesInCup >= 2 && iceCubesInCup < 4)
             {
                 iceCounter -= 9 * iceCubesInCup;
+                return iceCounter;
             }
             else if (iceCubesInCup >= 4 && iceCubesInCup < 6)
             {
                 iceCounter -= 10 * iceCubesInCup;
+                return iceCounter;
             }
             else if (iceCubesInCup >= 6 && iceCubesInCup < 8)
             {
                 iceCounter -= 11 * iceCubesInCup;
+                return iceCounter;
             }
             else if (iceCubesInCup >= 8 && iceCubesInCup < 10)
             {
                 iceCounter -= 12 * iceCubesInCup;
+                return iceCounter;
             }
             else
             {
-                Console.WriteLine("Can't fit 10 or more ice cubes in a cup, sorry. Please choose a smaller number.");
-                ChooseIce();
+                return iceCounter;
             }
-            return iceCubesInCup;
+        }
+        public int ChooseCups()
+            {
+            if (iceCubesInCup < 2)
+            {
+                cupsPerPitcher = 8;
+            }
+            else if (iceCubesInCup >= 2 && iceCubesInCup < 4)
+            {
+                cupsPerPitcher = 9;
+            }
+            else if (iceCubesInCup >= 4 && iceCubesInCup < 6)
+            {
+                cupsPerPitcher = 10;
+            }
+            else if (iceCubesInCup >= 6 && iceCubesInCup < 8)
+            {
+                cupsPerPitcher = 11;
+            }
+            else if (iceCubesInCup >= 8 && iceCubesInCup < 10)
+            {
+                cupsPerPitcher = 12;
+            }
+            return cupsPerPitcher;
+        }
+        public int AddCups()
+        {
+            cupCounter -= cupsPerPitcher;
+            return cupCounter;
+        }
+        public void MakePitcher()
+        {
+            AddLemons();
+            AddSugar();
+            AddIce();
+            AddCups();
+        }
+        public void SellLemonade()
+        {
+            MakePitcher();
+            while (cupCounter > 0)
+            {
+
+            }
         }
     }
 }
