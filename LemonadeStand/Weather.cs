@@ -17,11 +17,7 @@ namespace LemonadeStand
         // constructor
         public Weather()
         {
-            forecastList = new List<string>();
-            forecastList.Add("sunny");
-            forecastList.Add("rainy");
-            forecastList.Add("cloudy");
-            forecastList.Add("hazy");
+            forecastList = new List<string>() { "sunny", "rainy", "cloudy", "hazy" };
         }
 
         // member methods

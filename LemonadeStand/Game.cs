@@ -46,8 +46,6 @@ namespace LemonadeStand
                 Console.ReadLine();
                 lemonadeStand.SellLemonade();
                 lemonadeStand.EndOfDaySupplies();
-                DisplayEndOfDay();
-
                 dayCounter++;
                 Console.Clear();
             }
@@ -63,11 +61,6 @@ namespace LemonadeStand
         {
             Console.WriteLine("Day " + dayCounter + "\n" + today.GetWeather());
         }
-
-        public void DisplayInventory()
-        {
-            Console.WriteLine("Inventory\nCups: " + lemonadeStand.cupCounter + "\nLemons: " + lemonadeStand.lemonCounter + "\nCups of Sugar: " + lemonadeStand.sugarCounter + "\nIce Cubes: " + lemonadeStand.iceCounter);
-        }
         public void DisplayMoney()
         {
             Console.WriteLine("Money: " + lemonadeStand.wallet);
@@ -78,11 +71,6 @@ namespace LemonadeStand
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-        }
-        public void DisplayEndOfDay()
-        {
-            DisplayInventory();
-            DisplayMoney();
         }
     }
 }

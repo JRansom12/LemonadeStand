@@ -10,14 +10,12 @@ namespace LemonadeStand
     {
         // member variables
         public List<string> standInventory;
-        public int cupCounter;
-        public int lemonCounter;
-        public int sugarCounter;
-        public int iceCounter;
         public int lemonsInPitcher;
         public int sugarInPitcher;
         public int iceCubesInCup;
         public int cupsPerPitcher;
+        public int totalCupsPurchased;
+        public int cupsPurchasedToday;
         public double wallet;
         public double lemonadePrice;
         public Store theStore;
@@ -66,8 +64,8 @@ namespace LemonadeStand
         }
         public int AddLemons()
         {
-            lemonCounter -= lemonsInPitcher;
-            return lemonCounter;
+            theStore.lemonCounter -= lemonsInPitcher;
+            return theStore.lemonCounter;
         }
         public int ChooseSugar()
         {
@@ -77,14 +75,14 @@ namespace LemonadeStand
         }
         public int AddSugar()
         {
-            sugarCounter -= sugarInPitcher;
-            return sugarCounter;
+            theStore.sugarCounter -= sugarInPitcher;
+            return theStore.sugarCounter;
         }
         public int ChooseIce()
         {
             Console.WriteLine("How many ice cubes per cup?");
             iceCubesInCup = int.Parse(Console.ReadLine());
-            if (iceCubesInCup <= 10)
+            if (iceCubesInCup < 10)
             {
                 return iceCubesInCup;
             }
@@ -98,32 +96,32 @@ namespace LemonadeStand
         {
             if (iceCubesInCup < 2)
             {
-                iceCounter -= 8 * iceCubesInCup;
-                return iceCounter;
+                theStore.iceCounter -= 8 * iceCubesInCup;
+                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 2 && iceCubesInCup < 4)
             {
-                iceCounter -= 9 * iceCubesInCup;
-                return iceCounter;
+                theStore.iceCounter -= 9 * iceCubesInCup;
+                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 4 && iceCubesInCup < 6)
             {
-                iceCounter -= 10 * iceCubesInCup;
-                return iceCounter;
+                theStore.iceCounter -= 10 * iceCubesInCup;
+                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 6 && iceCubesInCup < 8)
             {
-                iceCounter -= 11 * iceCubesInCup;
-                return iceCounter;
+                theStore.iceCounter -= 11 * iceCubesInCup;
+                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 8 && iceCubesInCup < 10)
             {
-                iceCounter -= 12 * iceCubesInCup;
-                return iceCounter;
+                theStore.iceCounter -= 12 * iceCubesInCup;
+                return theStore.iceCounter;
             }
             else
             {
-                return iceCounter;
+                return theStore.iceCounter;
             }
         }
         public int ChooseCups()
@@ -244,7 +242,7 @@ namespace LemonadeStand
                 return wallet;
             }
         }
-        public void PurchaseSupplies()
+        public void PurchaseSupplies() //add switch case here, with option to be done purchasing
         {
             DisplayInventory();
             DisplayMoney();
@@ -270,11 +268,23 @@ namespace LemonadeStand
             AddLemons();
             AddSugar();
             AddIce();
-            AddCups();
         }
         public void SellLemonade()
         {
             MakePitcher();
+            for(int i = 0; i < 42; i++)
+            {
+                totalCupsPurchased++;
+                theStore.cupCounter--;
+                wallet += lemonadePrice;
+                cupsPurchasedToday++;
+                if(cupsPurchasedToday == cupsPerPitcher)
+                {
+                    MakePitcher();
+                    cupsPurchasedToday = 0;
+                }
+                
+            }
         }
         public void EndOfDaySupplies()
         {
