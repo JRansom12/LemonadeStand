@@ -19,21 +19,39 @@ namespace LemonadeStand
             weather = new Weather();
             lemonadeStand = new Stand();
             customerList = new List<string>();
-            customerList.Add("Customer1");
-            customerList.Add("Customer2");
-            customerList.Add("Customer3");
-            customerList.Add("Customer4");
-            customerList.Add("Customer5");
-            customerList.Add("Customer6");
-            customerList.Add("Customer7");
-            customerList.Add("Customer8");
-            customerList.Add("Customer9");
-            customerList.Add("Customer10");
         }
 
         // member methods
-
-            public string GetWeather()
+        public List<string> GenerateCustomers()
+        {
+            if(weather.temperature <= 60)
+            {
+                customerList = new List<string>(new string[GenerateNumber(50, 60)]);
+                return customerList;
+            }
+            else if (weather.temperature <= 70)
+            {
+                customerList = new List<string>(new string[GenerateNumber(60, 70)]);
+                return customerList;
+            }
+            else if (weather.temperature <= 80)
+            {
+                customerList = new List<string>(new string[GenerateNumber(70, 80)]);
+                return customerList;
+            }
+            else if (weather.temperature <= 90)
+            {
+                customerList = new List<string>(new string[GenerateNumber(80, 90)]);
+                return customerList;
+            }
+            else
+            {
+                customerList = new List<string>(new string[GenerateNumber(90, 100)]);
+                return customerList;
+            }
+        }
+        
+        public string GetWeather()
         {
             return weather.GetWeather();
         }

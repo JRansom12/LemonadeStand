@@ -16,6 +16,7 @@ namespace LemonadeStand
         public int cupsPerPitcher;
         public int totalCupsPurchased;
         public int cupsPurchasedToday;
+        public double todayPurchases;
         public double wallet;
         public double lemonadePrice;
         public Store theStore;
@@ -28,6 +29,7 @@ namespace LemonadeStand
             iceCubesInCup = 0;
             cupsPerPitcher = 0;
             lemonadePrice = 0;
+            todayPurchases = 0;
             wallet = 20;
             theStore = new Store();
         }
@@ -157,16 +159,19 @@ namespace LemonadeStand
         {
             if (theStore.lemonsPurchased == 10)
             {
+                todayPurchases += .80;
                 wallet -= .80;
                 return wallet;
             }
             else if (theStore.lemonsPurchased == 30)
             {
+                todayPurchases += 2.10;
                 wallet -= 2.10;
                 return wallet;
             }
             else if (theStore.lemonsPurchased == 75)
             {
+                todayPurchases += 4.50;
                 wallet -= 4.50;
                 return wallet;
             }
@@ -179,16 +184,19 @@ namespace LemonadeStand
         {
             if (theStore.sugarPurchased == 8)
             {
+                todayPurchases += .56;
                 wallet -= .56;
                 return wallet;
             }
             else if(theStore.sugarPurchased == 20)
             {
+                todayPurchases += 1.50;
                 wallet -= 1.50;
                 return wallet;
             }
             else if(theStore.sugarPurchased == 48)
             {
+                todayPurchases += 3.20;
                 wallet -= 3.20;
                 return wallet;
             }
@@ -202,16 +210,19 @@ namespace LemonadeStand
         {
             if (theStore.icePurchased == 100)
             {
+                todayPurchases += .95;
                 wallet -= .95;
                 return wallet;
             }
             else if(theStore.icePurchased == 250)
             {
+                todayPurchases += 2.25;
                 wallet -= 2.25;
                 return wallet;
             }
             else if(theStore.icePurchased == 500)
             {
+                todayPurchases += 3.95;
                 wallet -= 3.95;
                 return wallet;
             }
@@ -224,16 +235,19 @@ namespace LemonadeStand
         {
             if (theStore.cupsPurchased == 25)
             {
+                todayPurchases += .90;
                 wallet -= .90;
                 return wallet;
             }
             else if(theStore.cupsPurchased == 50)
             {
+                todayPurchases += 1.60;
                 wallet -= 1.60;
                 return wallet;
             }
             else if(theStore.cupsPurchased == 100)
             {
+                todayPurchases += 2.80;
                 wallet -= 2.80;
                 return wallet;
             }
@@ -289,30 +303,13 @@ namespace LemonadeStand
             AddSugar();
             AddIce();
         }
-        public void SellLemonade()
-        {
-            MakePitcher();
-            for (int i = 0; i < 42; i++)
-            {
-                totalCupsPurchased++;
-                theStore.cupCounter--;
-                wallet += lemonadePrice;
-                cupsPurchasedToday++;
-                if (cupsPurchasedToday == cupsPerPitcher)
-                {
-                    MakePitcher();
-                    cupsPurchasedToday = 0;
-                }
 
-            }
-        }
         public void EndOfDaySupplies()
         {
             Console.WriteLine("Your remaining ice has melted.");
             theStore.iceCounter = 0;
             DisplayInventory();
             DisplayMoney();
-            Console.ReadLine();
         }
     }
 }

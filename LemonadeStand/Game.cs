@@ -15,6 +15,8 @@ namespace LemonadeStand
         public int iceCounter;
         public int dayCounter;
         public int numberOfDays;
+        public double todaysProfit;
+        public double overallProfit;
         public Day today;
         public Stand lemonadeStand;
         public Store theStore;
@@ -39,18 +41,49 @@ namespace LemonadeStand
             for (int i = 1; i <= numberOfDays; i++)
             {
                 DisplayDay();
+                lemonadeStand.DisplayInventory();
+                lemonadeStand.DisplayMoney();
                 lemonadeStand.MakePurchases();
-                //lemonadeStand.PurchaseSupplies();
                 lemonadeStand.MakePitcherRecipe();
                 lemonadeStand.SetLemonadePrice();
                 Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
                 Console.ReadLine();
-                lemonadeStand.SellLemonade();
+                SellLemonade();
                 lemonadeStand.EndOfDaySupplies();
+                DisplayProfit();
                 dayCounter++;
+                Console.ReadLine();
                 Console.Clear();
             }
             Console.ReadLine();
+        }
+
+        public void SellLemonade()
+        {
+            today.GenerateCustomers();
+            lemonadeStand.MakePitcher();
+            for (int i = 0; i < today.customerList.Count; i++)
+            {
+                lemonadeStand.totalCupsPurchased++;
+                lemonadeStand.theStore.cupCounter--;
+                lemonadeStand.wallet += lemonadeStand.lemonadePrice;
+                lemonadeStand.cupsPurchasedToday++;
+                if (lemonadeStand.cupsPurchasedToday == lemonadeStand.cupsPerPitcher)
+                {
+                    lemonadeStand.MakePitcher();
+                    lemonadeStand.cupsPurchasedToday = 0;
+                }
+
+            }
+        }
+        public void DisplayProfit()
+        {
+            todaysProfit = lemonadeStand.totalCupsPurchased * lemonadeStand.lemonadePrice - lemonadeStand.todayPurchases;
+            Console.WriteLine("Today's profit is $" + todaysProfit);
+            overallProfit += todaysProfit;
+            Console.WriteLine("Overall profit is $" + overallProfit);
+            lemonadeStand.todayPurchases = 0;
+            lemonadeStand.totalCupsPurchased = 0;
         }
 
         public void DisplayRules()
