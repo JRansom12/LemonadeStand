@@ -12,6 +12,7 @@ namespace LemonadeStand
         public int temperature;
         public string forecast;
         public string weather;
+        public string weatherman;
         public List<string> forecastList;
 
         // constructor
@@ -35,6 +36,11 @@ namespace LemonadeStand
         {
             weather = GetTemp() + " degrees and " + GetForecast();
             return weather;
+        }
+        public string GetWeatherman()
+        {
+            weatherman = GenerateNumber(temperature - 5, temperature + 5) + " degrees and " + GetForecast();
+            return weatherman;
         }
         public int GenerateNumber(int min, int max)
         {

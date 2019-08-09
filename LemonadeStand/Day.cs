@@ -50,10 +50,15 @@ namespace LemonadeStand
                 return customerList;
             }
         }
+        // Use customerList and generate a return int based on different weather conditions and price
         
         public string GetWeather()
         {
             return weather.GetWeather();
+        }
+        public string GetWeatherman()
+        {
+            return weather.GetWeatherman();
         }
         public int GenerateNumber(int min, int max)
         {

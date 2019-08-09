@@ -47,6 +47,7 @@ namespace LemonadeStand
                 lemonadeStand.MakePitcherRecipe();
                 lemonadeStand.SetLemonadePrice();
                 Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
+                DisplayRealWeather();
                 Console.ReadLine();
                 SellLemonade();
                 lemonadeStand.EndOfDaySupplies();
@@ -55,6 +56,7 @@ namespace LemonadeStand
                 Console.ReadLine();
                 Console.Clear();
             }
+            Console.WriteLine("You've completed " + numberOfDays + " days at your lemonade stand! You made $" + overallProfit);
             Console.ReadLine();
         }
 
@@ -93,9 +95,14 @@ namespace LemonadeStand
 
         public void DisplayDay()
         {
-            Console.WriteLine("Day " + dayCounter + "\n" + today.GetWeather());
+            today.GetWeather();
+            Console.WriteLine("Day " + dayCounter + "\nForecast is " + today.GetWeatherman());
         }
-        public void DisplayMoney()
+        public void DisplayRealWeather()
+        {
+            Console.WriteLine("Weather is " + today.weather.temperature + " degrees and " + today.weather.forecast);
+        }
+        public void DisplayMoney()// ToString 2 decimals everywhere? or at instantiation
         {
             Console.WriteLine("Money: " + lemonadeStand.wallet.ToString("#.00"));
         }
