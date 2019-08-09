@@ -15,13 +15,13 @@ namespace LemonadeStand
 
 
         // member methods
-        public void MakesPurchase()
-        {
-            totalCupsPurchased++;
-            theStore.cupCounter--;
-            wallet += lemonadePrice;
-            cupsPurchasedToday++;
-        }
+        //public void MakesPurchase()
+        //{
+        //    totalCupsPurchased++;
+        //    theStore.cupCounter--;
+        //    wallet += lemonadePrice;
+        //    cupsPurchasedToday++;
+        //}
 
         public int GenerateNumber(int min, int max)
         {

@@ -13,12 +13,12 @@ namespace LemonadeStand
         // constructor
 
         // member methods
-        public void BuysLemonade()
-        {
-            if (.15 <= lemonadePrice <= .50)
-            {
-                MakesPurchase();
-            }
-        }
+        //public void BuysLemonade()
+        //{
+        //    if (.15 <= lemonadePrice <= .50)
+        //    {
+        //        MakesPurchase();
+        //    }
+        //}
     }
 }

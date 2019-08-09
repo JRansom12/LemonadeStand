@@ -23,29 +23,47 @@ namespace LemonadeStand
 
 
         // member methods
+
         public int PurchaseCups()
         {
             Console.WriteLine("Purchase cups\n25 cups = .90\n50 cups = 1.60\n100 cups = 2.80\nEnter 25, 50, 100, or 0");
-            cupsPurchased = int.Parse(Console.ReadLine());
-            if (cupsPurchased == 25)
+            cupsPurchased = Convert.ToInt32(Console.ReadLine());
+            switch (cupsPurchased)
             {
-                cupCounter += 25;
-                return cupCounter;
+                case 25:
+                    cupCounter += 25;
+                    return cupCounter;
+                case 50:
+                    cupCounter += 50;
+                    return cupCounter;
+                case 100:
+                    cupCounter += 100;
+                    return cupCounter;
+                case 0:
+                    break;
+                default:
+                    Console.WriteLine("Could not purchase that amount of cups.");
+                    break;
             }
-            else if (cupsPurchased == 50)
-            {
-                cupCounter += 50;
-                return cupCounter;
-            }
-            else if (cupsPurchased == 100)
-            {
-                cupCounter += 100;
-                return cupCounter;
-            }
-            else
-            {
-                return cupCounter;
-            }
+            //if (cupsPurchased == 25)
+            //{
+            //    cupCounter += 25;
+            //    return cupCounter;
+            //}
+            //else if (cupsPurchased == 50)
+            //{
+            //    cupCounter += 50;
+            //    return cupCounter;
+            //}
+            //else if (cupsPurchased == 100)
+            //{
+            //    cupCounter += 100;
+            //    return cupCounter;
+            //}
+            //else
+            //{
+            //    return cupCounter;
+            //}
         }
         public int PurchaseLemons()
         {

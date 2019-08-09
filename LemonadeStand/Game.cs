@@ -39,7 +39,8 @@ namespace LemonadeStand
             for (int i = 1; i <= numberOfDays; i++)
             {
                 DisplayDay();
-                lemonadeStand.PurchaseSupplies();
+                lemonadeStand.MakePurchases();
+                //lemonadeStand.PurchaseSupplies();
                 lemonadeStand.MakePitcherRecipe();
                 lemonadeStand.SetLemonadePrice();
                 Console.WriteLine("Your lemonade stand is ready!\nPress enter to open for the day");
@@ -63,7 +64,7 @@ namespace LemonadeStand
         }
         public void DisplayMoney()
         {
-            Console.WriteLine("Money: " + lemonadeStand.wallet);
+            Console.WriteLine("Money: " + lemonadeStand.wallet.ToString("#.00"));
         }
 
         public void ClearLine()

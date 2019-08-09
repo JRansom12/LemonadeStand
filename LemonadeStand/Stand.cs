@@ -242,26 +242,46 @@ namespace LemonadeStand
                 return wallet;
             }
         }
-        public void PurchaseSupplies() //add switch case here, with option to be done purchasing
+        public void MakePurchases()
         {
-            DisplayInventory();
-            DisplayMoney();
-            theStore.PurchaseCups();
-            PayForCups();
-            DisplayInventory();
-            DisplayMoney();
-            theStore.PurchaseLemons();
-            PayForLemons();
-            DisplayInventory();
-            DisplayMoney();
-            theStore.GetSugar();
-            PayForSugar();
-            DisplayInventory();
-            DisplayMoney();
-            theStore.PurchaseIce();
-            PayForIce();
-            DisplayInventory();
-            DisplayMoney();
+            Console.WriteLine("Which item would you like to purchase? 'cups', 'lemons', 'sugar', 'ice', or 'none'");
+            string item = Console.ReadLine();
+            switch (item)
+            {
+                case "cups":
+                    theStore.PurchaseCups();
+                    PayForCups();
+                    DisplayInventory();
+                    DisplayMoney();
+                    MakePurchases();
+                    break;
+                case "lemons":
+                    theStore.PurchaseLemons();
+                    PayForLemons();
+                    DisplayInventory();
+                    DisplayMoney();
+                    MakePurchases();
+                    break;
+                case "sugar":
+                    theStore.GetSugar();
+                    PayForSugar();
+                    DisplayInventory();
+                    DisplayMoney();
+                    MakePurchases();
+                    break;
+                case "ice":
+                    theStore.PurchaseIce();
+                    PayForIce();
+                    DisplayInventory();
+                    DisplayMoney();
+                    MakePurchases();
+                    break;
+                case "none":
+                    break;
+                default:
+                    MakePurchases();
+                    break;
+            }
         }
         public void MakePitcher()
         {
@@ -272,18 +292,18 @@ namespace LemonadeStand
         public void SellLemonade()
         {
             MakePitcher();
-            for(int i = 0; i < 42; i++)
+            for (int i = 0; i < 42; i++)
             {
                 totalCupsPurchased++;
                 theStore.cupCounter--;
                 wallet += lemonadePrice;
                 cupsPurchasedToday++;
-                if(cupsPurchasedToday == cupsPerPitcher)
+                if (cupsPurchasedToday == cupsPerPitcher)
                 {
                     MakePitcher();
                     cupsPurchasedToday = 0;
                 }
-                
+
             }
         }
         public void EndOfDaySupplies()
