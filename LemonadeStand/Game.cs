@@ -25,7 +25,7 @@ namespace LemonadeStand
         public Game()
         {
             dayCounter = 1;
-            numberOfDays = 7;
+            numberOfDays = 7; //Assign variables to numbers where possible, this way the data changes everywhere in the code instead of having to manually change the number at each location
             today = new Day();
             theStore = new Store();
             lemonadeStand = new Stand();

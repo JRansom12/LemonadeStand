@@ -48,11 +48,13 @@ namespace LemonadeStand
                     return cupCounter;
                 }
         }
-        public int PurchaseLemons()
+        public int PurchaseLemons()  //Open Close Principle can be applied here
+                                     //Create a PurchaseInventory method that each inventory item can override
+                                     //Also a AddSuppliesToInventory and SubtractCostfromWallet, which would allow the inventory to grow or shrink as needed, instead of having to write all new code for each inventory item
         {
             Console.WriteLine("Purchase lemons\n10 lemons = $.80\n30 lemons = $2.10\n75 lemons = $4.50\nEnter 10, 30, 75, or 0");
-            lemonsPurchased = int.Parse(Console.ReadLine());
-            if (lemonsPurchased == 10)
+            lemonsPurchased = int.Parse(Console.ReadLine()); //Code is definitely breakable at submission, important part of developing is making code user friendly and anticipating for any user input
+            if (lemonsPurchased == 10)                      //An important part of problem solving is preventing the problem in the first place, and user error, focus on this for resubmission
             {
                 lemonCounter += 10;
                 return lemonCounter;

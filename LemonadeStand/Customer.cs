@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public abstract class Customer
+    public abstract class Customer //Display knowledge of Liskov here
     {
         // member variables
 

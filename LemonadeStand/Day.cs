@@ -11,13 +11,11 @@ namespace LemonadeStand
         // member variables
         public Weather weather;
         public List<string> customerList;
-        public Stand lemonadeStand;
 
         // constructor
         public Day()
         {
             weather = new Weather();
-            lemonadeStand = new Stand();
             customerList = new List<string>();
         }
 
@@ -51,7 +49,8 @@ namespace LemonadeStand
             }
         }
         // Use customerList and generate a return int based on different weather conditions and price
-        
+
+
         public string GetWeather()
         {
             return weather.GetWeather();

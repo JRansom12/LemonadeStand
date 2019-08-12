@@ -35,6 +35,10 @@ namespace LemonadeStand
         }
 
         // member methods
+
+        // Interface Segregation Principle
+        // Being attentive to which classes should perfrom which methods, my Stand class carries quite a number of methods as I assigned most of the methods and actions to this class, simplifying the other classes
+        // My only concern here is if I made the Stand class too involved but I feel comfortable my lemonade stand would do all of these methods
         public void DisplayInventory()
         {
             Console.WriteLine("Cups: " + theStore.cupCounter + "\nLemons: " + theStore.lemonCounter + "\nCups of Sugar: " + theStore.sugarCounter + "\nIce Cubes: " + theStore.iceCounter);
@@ -69,8 +73,8 @@ namespace LemonadeStand
             theStore.lemonCounter -= lemonsInPitcher;
             return theStore.lemonCounter;
         }
-        public int ChooseSugar()
-        {
+        public int ChooseSugar()//SOLID Single Responsibility Principle - Seperated methods for choosing sugar, adding sugar to the counter, and subtracting sugar price from the wallet
+        {                       //Focused on creating methods with one purpose where possible excepting the Run Game and Make Purchases methods
             Console.WriteLine("How many cups of sugar?");
             sugarInPitcher = Convert.ToInt32(Console.ReadLine());
             return sugarInPitcher;
