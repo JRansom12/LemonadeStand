@@ -9,7 +9,7 @@ namespace LemonadeStand
     public class Stand
     {
         // member variables
-        public List<string> standInventory;
+        //public List<string> standInventory;
         public int lemonsInPitcher;
         public int sugarInPitcher;
         public int iceCubesInCup;
@@ -30,15 +30,14 @@ namespace LemonadeStand
             cupsPerPitcher = 0;
             lemonadePrice = 0;
             todayPurchases = 0;
-            wallet = 20;
+            wallet = 4;
             theStore = new Store();
         }
 
         // member methods
 
         // Interface Segregation Principle
-        // Being attentive to which classes should perfrom which methods, my Stand class carries quite a number of methods as I assigned most of the methods and actions to this class, simplifying the other classes
-        // My only concern here is if I made the Stand class too involved but I feel comfortable my lemonade stand would do all of these methods
+
         public void DisplayInventory()
         {
             Console.WriteLine("Cups: " + theStore.cupCounter + "\nLemons: " + theStore.lemonCounter + "\nCups of Sugar: " + theStore.sugarCounter + "\nIce Cubes: " + theStore.iceCounter);
@@ -59,6 +58,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("What price (between .01 and .99) do you want to sell your lemonade for?");
             lemonadePrice = Convert.ToDouble(Console.ReadLine());
+            if(lemonadePrice >= .99 || lemonadePrice <= .01)
+            {
+                SetLemonadePrice();
+            }
             Console.WriteLine("Price per cup of lemonade is " + lemonadePrice);
             return lemonadePrice;
         }
@@ -73,8 +76,8 @@ namespace LemonadeStand
             theStore.lemonCounter -= lemonsInPitcher;
             return theStore.lemonCounter;
         }
-        public int ChooseSugar()//SOLID Single Responsibility Principle - Seperated methods for choosing sugar, adding sugar to the counter, and subtracting sugar price from the wallet
-        {                       //Focused on creating methods with one purpose where possible excepting the Run Game and Make Purchases methods
+        public int ChooseSugar()//SOLID Single Responsibility Principle
+        {                       
             Console.WriteLine("How many cups of sugar?");
             sugarInPitcher = Convert.ToInt32(Console.ReadLine());
             return sugarInPitcher;
@@ -165,7 +168,7 @@ namespace LemonadeStand
             {
                 todayPurchases += .80;
                 wallet -= .80;
-                return wallet;
+                return wallet;                
             }
             else if (theStore.lemonsPurchased == 30)
             {
@@ -184,80 +187,131 @@ namespace LemonadeStand
                 return wallet;
             }
         }
-        public double PayForSugar()
+        public void PayForSugar()
         {
             if (theStore.sugarPurchased == 8)
             {
-                todayPurchases += .56;
-                wallet -= .56;
-                return wallet;
+                if (wallet >= theStore.sugar8Cups)
+                {
+                    todayPurchases += theStore.sugar8Cups;
+                    wallet -= theStore.sugar8Cups;
+                }
+                else
+                {
+                    theStore.sugarCounter -= 8;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
             else if(theStore.sugarPurchased == 20)
             {
-                todayPurchases += 1.50;
-                wallet -= 1.50;
-                return wallet;
+                if (wallet >= theStore.sugar20Cups)
+                {
+                    todayPurchases += theStore.sugar20Cups;
+                    wallet -= theStore.sugar20Cups;
+                }
+                else
+                {
+                    theStore.sugarCounter -= 20;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
             else if(theStore.sugarPurchased == 48)
             {
-                todayPurchases += 3.20;
-                wallet -= 3.20;
-                return wallet;
+                if(wallet >= theStore.sugar48Cups)
+                {
+                    todayPurchases += theStore.sugar48Cups;
+                    wallet -= theStore.sugar48Cups;
+                }
+                else
+                {
+                    theStore.sugarCounter -= 20;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
-            else
-            {
-                return wallet;
-            }
-            
         }
-        public double PayForIce()
+
+        public void PayForIce()
         {
             if (theStore.icePurchased == 100)
             {
-                todayPurchases += .95;
-                wallet -= .95;
-                return wallet;
+                if (wallet >= theStore.ice100Cubes)
+                {
+                    todayPurchases += theStore.ice100Cubes;
+                    wallet -= theStore.ice100Cubes;
+                }
+                else
+                {
+                    theStore.iceCounter -= 100;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
             else if(theStore.icePurchased == 250)
             {
-                todayPurchases += 2.25;
-                wallet -= 2.25;
-                return wallet;
+                if (wallet >= theStore.ice250Cubes)
+                {
+                    todayPurchases += theStore.ice250Cubes;
+                    wallet -= theStore.ice250Cubes;
+                }
+                else
+                {
+                    theStore.iceCounter -= 250;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
             else if(theStore.icePurchased == 500)
             {
-                todayPurchases += 3.95;
-                wallet -= 3.95;
-                return wallet;
-            }
-            else
-            {
-                return wallet;
+                if (wallet >= theStore.icePurchased)
+                {
+                    todayPurchases += theStore.ice500Cubes;
+                    wallet -= theStore.ice500Cubes;
+                }
+                else
+                {
+                    theStore.iceCounter -= 500;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
         }
-        public double PayForCups()
+        public void PayForCups()
         {
             if (theStore.cupsPurchased == 25)
             {
-                todayPurchases += .90;
-                wallet -= .90;
-                return wallet;
+                if (wallet >= theStore.price25Cups)
+                {
+                    todayPurchases += theStore.price25Cups;
+                    wallet -= theStore.price25Cups;
+                }
+                else
+                {
+                    theStore.cupCounter -= 25;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
-            else if(theStore.cupsPurchased == 50)
+            else if (theStore.cupsPurchased == 50)
             {
-                todayPurchases += 1.60;
-                wallet -= 1.60;
-                return wallet;
+                if (wallet >= theStore.price50Cups)
+                {
+                    todayPurchases += theStore.price50Cups;
+                    wallet -= theStore.price50Cups;
+                }
+                else
+                {
+                    theStore.cupCounter -= 50;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
-            else if(theStore.cupsPurchased == 100)
+            else if (theStore.cupsPurchased == 100)
             {
-                todayPurchases += 2.80;
-                wallet -= 2.80;
-                return wallet;
-            }
-            else
-            {
-                return wallet;
+                if (wallet >= theStore.price100Cups)
+                {
+                    todayPurchases += theStore.price100Cups;
+                    wallet -= theStore.price100Cups;
+                }
+                else
+                {
+                    theStore.cupCounter -= 100;
+                    Console.WriteLine("Not enough money in wallet for that purchase.");
+                }
             }
         }
         public void MakePurchases()

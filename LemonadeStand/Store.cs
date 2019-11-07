@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Store
+    public class Store  //Access Modifiers need to be consistent, private, public, or
     {
         // member variables
         public List<string> inventory;
@@ -18,6 +18,15 @@ namespace LemonadeStand
         public int lemonCounter;
         public int cupCounter;
         public int iceCounter;
+        public double price50Cups = 1.60;
+        public double price25Cups = .90;
+        public double price100Cups = 2.80;
+        public double ice100Cubes = .95;
+        public double ice250Cubes = 2.25;
+        public double ice500Cubes = 3.95;
+        public double sugar8Cups = .56;
+        public double sugar20Cups = 1.50;
+        public double sugar48Cups = 3.20;
 
         // constructor
 
@@ -28,7 +37,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("Purchase cups\n25 cups = .90\n50 cups = 1.60\n100 cups = 2.80\nEnter 25, 50, 100, or 0");
             cupsPurchased = Convert.ToInt32(Console.ReadLine());
-                if (cupsPurchased == 25)
+            if (cupsPurchased == 25)
                 {
                     cupCounter += 25;
                     return cupCounter;
@@ -45,16 +54,15 @@ namespace LemonadeStand
                 }
                 else
                 {
+                    Console.WriteLine("Not a valid number of cups to purchase");
                     return cupCounter;
                 }
         }
-        public int PurchaseLemons()  //Open Close Principle can be applied here
-                                     //Create a PurchaseInventory method that each inventory item can override
-                                     //Also a AddSuppliesToInventory and SubtractCostfromWallet, which would allow the inventory to grow or shrink as needed, instead of having to write all new code for each inventory item
-        {
+        public int PurchaseLemons()
+        {    
             Console.WriteLine("Purchase lemons\n10 lemons = $.80\n30 lemons = $2.10\n75 lemons = $4.50\nEnter 10, 30, 75, or 0");
-            lemonsPurchased = int.Parse(Console.ReadLine()); //Code is definitely breakable at submission, important part of developing is making code user friendly and anticipating for any user input
-            if (lemonsPurchased == 10)                      //An important part of problem solving is preventing the problem in the first place, and user error, focus on this for resubmission
+            lemonsPurchased = int.Parse(Console.ReadLine());
+            if (lemonsPurchased == 10)
             {
                 lemonCounter += 10;
                 return lemonCounter;
@@ -71,6 +79,7 @@ namespace LemonadeStand
             }
             else
             {
+                Console.WriteLine("Not a valid number of lemons to purchase");
                 return lemonCounter;
             }
         }
@@ -95,6 +104,7 @@ namespace LemonadeStand
             }
             else
             {
+                Console.WriteLine("Not a valid number of cups of sugar to purchase");
                 return sugarCounter;
             }
         }
@@ -119,6 +129,7 @@ namespace LemonadeStand
             }
             else
             {
+                Console.WriteLine("Not a valid number of ice cubes to purchase");
                 return iceCounter;
             }
         }

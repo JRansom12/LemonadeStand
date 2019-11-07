@@ -10,6 +10,8 @@ namespace LemonadeStand
     {
         // member variables
         public int temperature;
+        public int lowTemp;
+        public int highTemp;
         public string forecast;
         public string weather;
         public string weatherman;
@@ -19,17 +21,19 @@ namespace LemonadeStand
         public Weather()
         {
             forecastList = new List<string>() { "sunny", "rainy", "cloudy", "hazy" };
+            lowTemp = 50;
+            highTemp = 100;
         }
 
         // member methods
         public string GetForecast()
         {
-            forecast = forecastList[GenerateNumber(0, 3)];
+            forecast = forecastList[GenerateNumber(0, forecastList.Count)];
             return forecast;
         }
         public int GetTemp()
         {
-            temperature = GenerateNumber(50, 100);
+            temperature = GenerateNumber(lowTemp, highTemp);
             return temperature;
         }
         public string GetWeather()

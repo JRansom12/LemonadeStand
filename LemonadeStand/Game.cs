@@ -25,7 +25,7 @@ namespace LemonadeStand
         public Game()
         {
             dayCounter = 1;
-            numberOfDays = 7; //Assign variables to numbers where possible, this way the data changes everywhere in the code instead of having to manually change the number at each location
+            numberOfDays = 7;
             today = new Day();
             theStore = new Store();
             lemonadeStand = new Stand();
@@ -75,9 +75,9 @@ namespace LemonadeStand
                     lemonadeStand.MakePitcher();
                     lemonadeStand.cupsPurchasedToday = 0;
                 }
-
             }
         }
+
         public void DisplayProfit()
         {
             todaysProfit = lemonadeStand.totalCupsPurchased * lemonadeStand.lemonadePrice - lemonadeStand.todayPurchases;
@@ -102,7 +102,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("Weather is " + today.weather.temperature + " degrees and " + today.weather.forecast);
         }
-        public void DisplayMoney()// ToString 2 decimals everywhere? or at instantiation
+        public void DisplayMoney()
         {
             Console.WriteLine("Money: " + lemonadeStand.wallet.ToString("#.00"));
         }
