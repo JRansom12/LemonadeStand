@@ -111,7 +111,13 @@ namespace LemonadeStand
         public int PurchaseIce()
         {
             Console.WriteLine("Purchase ice\n100 ice cubes = $.95\n250 ice cubes = $2.25\n500 ice cubes = $3.95\nEnter 100, 250, 500, or 0");
-            icePurchased = int.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
+            if (!Int32.TryParse(input, out icePurchased))
+            {
+                Console.WriteLine("Not a valid number");
+                PurchaseIce();
+            }
+            icePurchased = int.Parse(input);
             if (icePurchased == 100)
             {
                 iceCounter += 100;

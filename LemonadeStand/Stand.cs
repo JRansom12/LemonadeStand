@@ -71,21 +71,31 @@ namespace LemonadeStand
             lemonsInPitcher = Convert.ToInt32(Console.ReadLine());
             return lemonsInPitcher;
         }
-        public int AddLemons()
+        public void AddLemons()
         {
             theStore.lemonCounter -= lemonsInPitcher;
-            return theStore.lemonCounter;
+            if(theStore.lemonCounter < 0)
+            {
+                theStore.lemonCounter = 0;
+                Console.WriteLine("Not enough lemons to make another pitcher");
+                EndOfDaySupplies();
+            }
         }
-        public int ChooseSugar()//SOLID Single Responsibility Principle
+        public int ChooseSugar()
         {                       
             Console.WriteLine("How many cups of sugar?");
             sugarInPitcher = Convert.ToInt32(Console.ReadLine());
             return sugarInPitcher;
         }
-        public int AddSugar()
+        public void AddSugar()
         {
             theStore.sugarCounter -= sugarInPitcher;
-            return theStore.sugarCounter;
+            if(theStore.sugarCounter < 0)
+            {
+                theStore.sugarCounter = 0;
+                Console.WriteLine("Not enough sugar to make another pitcher");
+                EndOfDaySupplies();
+            }
         }
         public int ChooseIce()
         {
@@ -101,36 +111,33 @@ namespace LemonadeStand
                 return ChooseIce();
             }
         }
-        public int AddIce()
+        public void AddIce()
         {
             if (iceCubesInCup < 2)
             {
                 theStore.iceCounter -= 8 * iceCubesInCup;
-                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 2 && iceCubesInCup < 4)
             {
                 theStore.iceCounter -= 9 * iceCubesInCup;
-                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 4 && iceCubesInCup < 6)
             {
                 theStore.iceCounter -= 10 * iceCubesInCup;
-                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 6 && iceCubesInCup < 8)
             {
                 theStore.iceCounter -= 11 * iceCubesInCup;
-                return theStore.iceCounter;
             }
             else if (iceCubesInCup >= 8 && iceCubesInCup < 10)
             {
                 theStore.iceCounter -= 12 * iceCubesInCup;
-                return theStore.iceCounter;
             }
-            else
+            if(theStore.iceCounter < 0)
             {
-                return theStore.iceCounter;
+                theStore.iceCounter = 0;
+                Console.WriteLine("Not enough ice to make another picther");
+                EndOfDaySupplies();
             }
         }
         public int ChooseCups()

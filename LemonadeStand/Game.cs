@@ -50,16 +50,19 @@ namespace LemonadeStand
                 DisplayRealWeather();
                 Console.ReadLine();
                 SellLemonade();
-                lemonadeStand.EndOfDaySupplies();
-                DisplayProfit();
-                dayCounter++;
-                Console.ReadLine();
-                Console.Clear();
+                EndDay();
             }
             Console.WriteLine("You've completed " + numberOfDays + " days at your lemonade stand! You made $" + overallProfit);
             Console.ReadLine();
         }
-
+        public void EndDay()
+        {
+            lemonadeStand.EndOfDaySupplies();
+            DisplayProfit();
+            dayCounter++;
+            Console.ReadLine();
+            Console.Clear();
+        }
         public void SellLemonade()
         {
             today.GenerateCustomers();
@@ -74,6 +77,11 @@ namespace LemonadeStand
                 {
                     lemonadeStand.MakePitcher();
                     lemonadeStand.cupsPurchasedToday = 0;
+                }
+                if (lemonadeStand.theStore.cupCounter == 0)
+                {
+                    Console.WriteLine("No more cups remaining");
+                    EndDay();
                 }
             }
         }
